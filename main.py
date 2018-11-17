@@ -3,13 +3,15 @@ from Tools.scripts import import_diagnostics
 
 import importlib
 
-importlib.import_module('models')
+from models import AutoEncoder
+
 import matplotlib.pyplot as plt
 
 batch_size = 200
 salt_ratio = .05
 pepper_ratio = .15
 
+encoder = AutoEncoder.AutoEncoder()
 
 def get_ds(x, y, f):
   ds = tf.data.Dataset.from_tensor_slices((x, y))

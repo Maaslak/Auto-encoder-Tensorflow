@@ -16,8 +16,8 @@ class AutoEncoder(object):
         :param training: boolean value to determine if it's the training phase
         :return: returns the output of the block
         """
-        self.depth +=1
-        with tf.variable_scope('model_mnist_res' + str(self.depth), reuse=tf.AUTO_REUSE):
+        self.scope_num  +=1
+        with tf.variable_scope('model_mnist_res' + str(self.scope_num ), reuse=tf.AUTO_REUSE):
             model = tf.layers.conv2d(x, in_f, (3, 1), 1, 'SAME')
             model = tf.layers.batch_normalization(model, momentum=momentum, training=training)
             model = activation(model)
@@ -45,7 +45,7 @@ class AutoEncoder(object):
         print('Lets start generating model')
 
     def __init__(self):
-        self.depth = 0 #used to label layers
+        self.scope_num = 0 #used to label layers
         self.model()
 
     pass
